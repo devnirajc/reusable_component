@@ -1,0 +1,333 @@
+#sidebar {
+  min-width: 305px;
+  max-width: 305px;
+  min-height: calc(100vh - 56px);
+  background: #1565c0;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+perfect-scrollbar,
+.ps {
+  overflow: hidden !important;
+}
+
+nav.active perfect-scrollbar {
+  overflow: unset !important;
+}
+
+.maxHeightCross {
+  max-height: calc(100vh - 56px);
+}
+
+@media (min-width: 767px) {
+  #sidebar {
+    position: relative;
+    min-width: 250px;
+    max-width: 250px;
+  }
+}
+
+#sidebar.active {
+  margin-left: -305px;
+}
+
+@media (max-width: 767px) {
+  #sidebar {
+    margin-left: -305px;
+  }
+
+  #sidebar.active {
+    margin-left: 0;
+  }
+}
+
+#sidebar.active .nav-text {
+  display: initial;
+}
+
+@media (min-width: 767px) {
+  #sidebar.active {
+    margin-left: -250px;
+  }
+
+  #sidebar.active {
+    margin-left: 0px;
+    min-width: 70px;
+    max-width: 70px;
+    z-index: 1;
+  }
+
+  #sidebar.active .nav-text {
+    display: none;
+  }
+}
+
+#sidebar a[data-toggle="collapse"] {
+  position: relative;
+}
+
+#sidebar a[aria-expanded="false"]::before,
+#sidebar a[aria-expanded="true"]::before {
+  content: '\f105';
+  display: block;
+  position: absolute;
+  right: 10px;
+  font-family: 'FontAwesome';
+  font-size: 1.1rem;
+}
+
+#sidebar a[aria-expanded="true"]::before {
+  content: '\f107';
+}
+
+@media (min-width: 767px) {
+
+  #sidebar.active a[aria-expanded="false"]::before,
+  #sidebar.active a[aria-expanded="true"]::before {
+    content: '\f105';
+    right: 10px;
+  }
+}
+
+#sidebar ul.components {
+  border-bottom: 1px solid #1565c0;
+  position: fixed;
+  width: 305px;
+}
+
+@media (min-width: 767px) {
+  #sidebar ul.components {
+    width: 250px;
+    transition: all 0.3s;
+    z-index: 1;
+  }
+
+  #sidebar.active ul.components .show {
+    display: none;
+  }
+
+  #sidebar.active ul.components {
+    width: 70px;
+  }
+
+  #sidebar.active ul.components li {
+    position: relative;
+  }
+
+  #sidebar.active ul.components li:hover .list-unstyled.collapse {
+    position: absolute;
+    display: block;
+    top: 0px;
+    left: 70px;
+    z-index: 2;
+    height: 300%;
+    max-height: 50vh;
+    overflow: auto;
+  }
+
+  .outer-list-container {
+    // height: 100%;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  #sidebar.active ul.components li:hover .list-unstyled.collapse li {
+    display: block;
+    width: 200px;
+  }
+
+  #sidebar.active ul.components li .collapsing {
+    -webkit-transition: none;
+    transition: none;
+    display: none;
+  }
+}
+
+#sidebar ul p {
+  color: #fff;
+  padding: 10px;
+}
+
+#sidebar ul li a {
+  padding: 10px 0px 10px 30px;
+  font-size: 0.9rem;
+  display: block;
+  color: #eaeaea;
+  border-bottom: 1px solid #0c73e6;
+}
+
+@media (min-width: 767px) {
+  #sidebar ul li a {
+    padding: 10px 0px 10px 11px;
+  }
+}
+
+#sidebar ul ul a {
+  font-size: 0.9rem !important;
+  padding-left: 45px !important;
+  background: #1565c0;
+  text-decoration: none;
+}
+
+@media (min-width: 767px) {
+  #sidebar.active ul ul a {
+    padding-left: 25px !important;
+    padding-left: 10px !important;
+  }
+}
+
+#sidebar ul li a:hover {
+  color: #fff;
+  background: #0d417b;
+  text-decoration: none;
+}
+
+#sidebar ul li>a.active {
+  color: #fff;
+  background: #05448a;
+}
+
+#sidebar ul li a[aria-expanded="true"] {
+  background: #1259a9;
+}
+
+#sidebar ul li a i {
+  padding-right: 9px;
+}
+
+#sidebar a.triangle {
+  display: none;
+}
+
+// @media (min-width: 767px) {
+//     #sidebar a.triangle {
+//         display: block;
+//     }
+//     #sidebar a.triangle::before,
+//     #sidebar a.triangle.active::before {
+//         display: table;
+//         content: '';
+//     }
+//     #sidebar a.triangle::before {
+//         position: absolute;
+//         top: 240px;
+//         right: -15px;
+//         width: 0;
+//         height: 0;
+//         border-style: solid;
+//         border-width: 25px 15px 25px 0;
+//         border-color: transparent  #1259a9 transparent transparent;
+//         _border-color: #000000  #1259a9 #000000 #000000;
+//         _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+//         z-index: 1;
+//     }
+//     #sidebar a.triangle.active::before {
+//         border-width: 25px 0 25px 15px;
+//         border-color: transparent transparent transparent #1259a9;
+//         _border-color: #000000 #000000 #000000 #1259a9;
+//         _filter: progid:DXImageTransform.Microsoft.Chroma(color='#000000');
+//     }
+// }
+@media (min-width: 767px) {
+  #sidebar a.triangle {
+    display: block;
+  }
+
+  #sidebar a.triangle::before,
+  #sidebar a.triangle.active1::before {
+    display: block;
+    content: '';
+  }
+
+  #sidebar a.triangle::before {
+    position: absolute;
+    top: -webkit-calc(100% - 7vh);
+    top: -moz-calc(100% - 7vh);
+    top: calc(100% - 7vh);
+    top: 38vh;
+    left: 15.5rem;
+    width: 0;
+    height: 0;
+    font-family: 'FontAwesome';
+    font-size: 1.5rem;
+    content: '\f053'; // Double Arrow left - \f100  f053
+    color: #1565c0;
+    z-index: 1;
+  }
+
+  #sidebar a.triangle.active1::before {
+    content: '\f054'; // Double Arrow right - \f101  f054
+    left: 4.4rem;
+    display: block;
+  }
+}
+
+// IE 10+
+@media screen and (-ms-high-contrast: active),
+(-ms-high-contrast: none) {
+  #sidebar a.triangle {
+    display: block;
+  }
+
+  #sidebar a.triangle::before,
+  #sidebar a.triangle.active1::before {
+    display: block;
+    content: '';
+  }
+
+  #sidebar a.triangle::before {
+    position: absolute;
+    top: -webkit-calc(100% - 7vh);
+    top: -moz-calc(100% - 7vh);
+    top: calc(100% - 7vh);
+    top: 38vh;
+    left: 15.5rem;
+    width: 0;
+    height: 0;
+    font-family: 'FontAwesome';
+    font-size: 1.5rem;
+    content: '\f053'; // Double Arrow left - \f100  f053
+    color: #1565c0;
+    z-index: 1;
+  }
+
+  #sidebar a.triangle.active1::before {
+    content: '\f054'; // Double Arrow right - \f101  f054
+    left: 4.4rem;
+    display: block;
+  }
+
+  nav.active perfect-scrollbar {
+    overflow: visible !important;
+  }
+}
+
+/* IE9, IE10 */
+@media screen and (min-width:0\0) {
+  #sidebar a.triangle::before {
+    position: absolute;
+    top: -webkit-calc(100% - 7vh);
+    top: -moz-calc(100% - 7vh);
+    top: calc(100% - 7vh);
+    top: 38vh;
+    left: 15.5rem;
+    width: 0;
+    height: 0;
+    font-family: 'FontAwesome';
+    font-size: 1.5rem;
+    content: '\f053'; // Double Arrow left - \f100  f053
+    color: #1565c0;
+    z-index: 1;
+  }
+
+  #sidebar a.triangle.active1::before {
+    content: '\f054'; // Double Arrow right - \f101  f054
+    left: 4.4rem;
+    display: block;
+  }
+
+  nav.active perfect-scrollbar {
+    overflow: visible !important;
+  }
+}

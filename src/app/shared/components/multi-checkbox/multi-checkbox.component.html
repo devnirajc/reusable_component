@@ -1,0 +1,3 @@
+<div *ngFor="let item of options" [ngClass]="{'horizontal': alignment == 'horizontal'}">
+  <input type="checkbox" [checked]="defaultValueSelection(item)" [value]="optionsValue(item)" (change)="onToggle($event,item)"><span class="checkbox-label">{{optionsLabel(item)}}</span>
+</div>

@@ -1,0 +1,11 @@
+<div class="modal-body text-center modal-custom">
+  <h4 class="modal-title">{{headerTitle}}</h4><hr>
+  <i *ngIf="iconClass" [ngClass]="iconClass" aria-hidden="true"></i>
+  <ng-container *ngTemplateOutlet="template;context:{data:data}"></ng-container>
+  <p *ngIf="message">{{message}}</p>
+  <hr>
+  <div>
+    <button type="button" class="btn btn-secondary " *ngIf="cancelButtonText" aria-label="Close" (click)="onCancel()">{{cancelButtonText}}</button>
+    <button type="submit" class="btn btn-master" *ngIf="successButtonText" (click)="onSuccess()">{{successButtonText}}</button>
+  </div>
+</div>

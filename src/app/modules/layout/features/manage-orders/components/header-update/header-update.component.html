@@ -1,0 +1,19 @@
+<h3 class="text-muted">{{headerUpDateLabel}}</h3>
+<hr/>
+<div class="row" *ngIf="data.length > 0">    
+    <div class="col-md-2 ml-auto pr-0" *ngIf="ordersService.orderTypeStatus.length">     
+        <app-drop-down (selectedInputData) = "onStatusChange($event)" defaultDisplayLabel="description" defaultOptionsValue="orderStatusId" [receivedInputData]="ordersService.orderTypeStatus"
+        [defaultSelectWidth]="selectDropDownWidth" [defaultValue]="translate.instant('orderStatusLabel')" value=""  inputClass="form-control form-control-sm"></app-drop-down>
+        <!-- <p class="error" *ngIf="searchQueryParams.status == ''">Required</p>     -->
+    </div>
+    <div class="col-md-2 pr-0">
+        <p><app-datepicker name="processDate" [minDate] = "processDateMinDdate" [maxDate]="processDateMaxDdate" [showDefaultDate]= "dateBulkDafaultValue" [placeholder]="processDatePlaceHolder" (change) ="onDateChange($event,'processingDate','deliveryDateMinDate')" ></app-datepicker></p>
+    </div>
+    <div class="col-md-2">
+        <p><app-datepicker name="deliveryDate" [maxDate]="deliveryDateMaxDate" [minDate]="deliveryDateMinDate" [showDefaultDate]= "dateBulkDafaultValue" [placeholder]="deliveryDatePlaceHolder" (change)="onDateChange($event,'deliveryDate','processDateMaxDdate')" ></app-datepicker></p>
+    </div>
+</div>
+<app-header-update-grid [noDataFound]="noDataFound" [gridData]="data" (onDateChange) = "changeDate($event)" ></app-header-update-grid>
+<ng-container *ngIf="data.length > 0">
+    <app-form [formFields]="formFields"></app-form>
+</ng-container>

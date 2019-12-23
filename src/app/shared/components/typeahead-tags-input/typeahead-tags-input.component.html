@@ -1,0 +1,5 @@
+<app-tags-input [class] ="fieldWidthCls" [tooltip]="tooltip" (onTagsChanged)="onTagsChanged($event)"
+ [removeLastOnBackspace]="removeLastOnBackspace" [canDeleteTags]="canDeleteTags" [minLengthBeforeOptions]="minLengthBeforeOptions"
+ [placeholder]="placeholder" [options]="options" [attr.name]="formName" [scrollableOptions]="scrollableOptions" [scrollableOptionsInView]="scrollableOptionsInView"
+ (onMaxTagsReached)="onMaxTagsReached($event)" (onNoOptionsMatch)="onNoOptionsMatch($event)" [(ngModel)]="tags"
+ ></app-tags-input>

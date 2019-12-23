@@ -1,0 +1,17 @@
+<ng-container>
+  <app-bulk-order-inbox-search [searchQueryData]="searchQueryData" (formReset)="formReset($event)" (fetchBulkOrders)="fetchBulkOrders($event)"></app-bulk-order-inbox-search>
+    <app-button [cls]="refreshBtnCls" [iconTooltip]="refreshBtnTooltip" [iconClass]="refreshBtnIconClass" (onButtonClick)="fetchRecords()"></app-button>
+    <p>&nbsp;</p>
+    <app-grid [gridConfig] = "gridConfig" [coloumnConfig] = "coloumnConfig" [gridData]="data" (triggerSortEvent)="triggerSorting($event)"></app-grid>
+    <div [hidden] ="data.length == 0">
+        <app-pagination [page]="page" (goPrev)="goPrev()" (goNext)="goNext()" (goPage) ="goPage($event)" (changeInPerPage)="changeInperPage($event)" [count]="total" [perPage]="limit" [pagesToShow]="numberOfPagesOptionsToBeDispalyed" [pageLimitArray]='pagesLimitArray'>
+        </app-pagination>
+    </div>  
+</ng-container>
+<ng-template #notAuthorized>
+    <div id="notAuthorized">
+      <div class="notAuthorized">
+        <div class="" [innerHtml]="fetchText()"></div>      
+      </div>
+    </div>
+  </ng-template>

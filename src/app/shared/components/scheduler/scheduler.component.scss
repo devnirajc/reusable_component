@@ -1,0 +1,27 @@
+.table-grid th {
+    font-weight: 500;
+}
+
+// table {
+//     empty-cells: show;
+//     border: 1px solid #000;
+// }
+
+// table td,
+// table th {
+//     min-width: 2em;
+//     min-height: 2em;
+//     border: 1px solid #000;
+// }
+
+
+
+table {
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    border: 1px solid #888;
+    padding: 0.25em 0.5em;
+  }

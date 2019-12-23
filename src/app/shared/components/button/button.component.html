@@ -1,0 +1,7 @@
+<ng-container *ngIf="!hidden">
+<button (click)="buttonClick($event)" [ngClass]="cls" [disabled]="disabled" [tooltip]="iconTooltip">
+    <i [ngClass]="previousIconClass" aria-hidden="true" *ngIf="previousIconClass"></i>
+    {{text}}
+    <i [ngClass]="iconClass" aria-hidden="true" *ngIf="iconClass"></i>
+</button>
+</ng-container>

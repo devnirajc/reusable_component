@@ -1,0 +1,17 @@
+.scroll-in-mobile {
+  width: 100%;
+  overflow: auto;  
+  
+  .table-grid{     
+    font-size: 0.8rem;
+    th {
+      font-weight: 500;
+      padding: .3rem;
+      z-index: 2;
+    }
+    td {
+      padding: .3rem;
+      max-width:200px;
+    }      
+  }
+}

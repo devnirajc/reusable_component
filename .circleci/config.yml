@@ -1,0 +1,164 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+#
+version: 2
+jobs:
+    build:
+        docker:
+        # specify the version you desire here
+            - image: circleci/openjdk:9-jdk-browsers              
+
+        working_directory: ~/repo
+
+        steps:
+            - checkout
+            
+            - run: |
+                if [[ "$CIRCLE_BRANCH" != "master" ]]
+                then
+                    text=`git log $CIRCLE_BRANCH --not origin/master --pretty=oneline --no-merges`
+                    while read -r line; do
+                        output=`echo $line|grep -i "scoop-[0-9]\|[maven-release-plugin]\|[skip ci]"`
+                        if [[ $output ]]
+                        then
+                            echo "" > /dev/null
+                        else
+                            echo $line
+                            echo "No Jira id found for atleast one of the commits"
+                            exit 1
+                        fi
+                    done <<< "$text"
+                fi
+
+        # Download and cache dependencies
+            - restore_cache:
+                keys:
+                - v1-dependencies-{{ checksum "package.json" }}-{{ checksum "pom.xml" }}
+                # fallback to using the latest cache if no exact match is found
+                - v1-dependencies-
+
+        #    - run:
+        #        name: Set POM Version
+        #        command:  |
+        #            mvn build-helper:parse-version versions:set -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion}-${CIRCLE_BUILD_NUM} versions:commit
+
+            - run: 
+                name: Maven Execution & Deploy
+                command: |
+                   echo 'export PATH=$PATH:~/repo/node:~/repo/node/node_modules/npm/bin:~/repo/node_modules/.bin' >> $BASH_ENV
+                   source $BASH_ENV
+                   if [[ "${CIRCLE_BRANCH}" == "master" ]]; then
+                       mvn -s .circleci/.circleci.settings.xml deploy sonar:sonar -Dsonar.javascript.lcov.reportPath=./coverage/lcov.info -Dsonar.surefire.reportsPath=./junitreport/junitreport.xml
+                   else
+                       mvn package sonar:sonar -Dsonar.javascript.lcov.reportPath=./coverage/lcov.info -Dsonar.surefire.reportsPath=./junitreport/junitreport.xml
+                   fi                   
+                   
+            #- run:
+            #    name: Copy Tar to artifacts dir
+            #    command: |
+            #        mkdir ~/repo/artifacts
+            #        cp ~/repo/target/oms-ui*.tar.gz ~/repo/artifacts                              
+              
+            - run:
+                name: Perform Maven Release
+                command:  |
+                   if [[ "$CIRCLE_BRANCH" = "master" ]]
+                   then
+                       if [[ $GIT_USER_EMAIL ]]; then git config --global user.email "$GIT_USER_EMAIL" ; fi
+                       if [[ $GIT_USER_NAME ]]; then git config --global user.name "$GIT_USER_NAME" ; fi
+                       if [[ $RELEASE ]]
+                       then 
+                       
+                        tag=`git tag --sort=-creatordate|head -n1`
+                        # tag1=`git tag --sort=-creatordate|head -n2|tail -n1`
+                        count=`git tag|wc -l`
+                        if [[ $count -ne 0 ]]
+                        then
+                            git log --pretty=oneline $tag..master --no-merges|grep -oi "scoop-[0-9]*"| tr '[:lower:]' '[:upper:]'| sort | uniq > content.txt
+                        else
+                            git log --pretty=oneline master --no-merges|grep -oi "scoop-[0-9]*"| tr '[:lower:]' '[:upper:]'| sort | uniq > content.txt
+                        fi
+                        version=`mvn org.apache.maven.plugins:maven-help-plugin:2.1.1:evaluate -Dexpression=project.version| sed -n -e '/^\[.*\]/ !{ /^[0-9]/ { p; q } }'| sed -e 's/[^0-9][^0-9]*$//'`
+                        if [[ ! -f changes.txt ]]
+                        then
+                           touch changes.txt
+                        fi
+                        
+                        while read -r line; do
+                          #echo $line
+                          curl  -X GET -H "Authorization: Basic cHJhdGlrZ0B4cGFueGlvbi5jby5pbjpKYW4xMjM0NUAyMDE4" \
+                          -H "Content-Type: application/json" "https://scoperetail.atlassian.net/rest/api/2/issue/$line?fields=summary,status" -o jira.json -s
+                          summary=`cat jira.json|jq '.fields.summary'|rev|cut -c2-|rev|cut -c2-`
+                          status=`cat jira.json|jq '.fields.status.name'|rev|cut -c2-|rev|cut -c2-`
+                          echo "$line: $summary ($status)" >> jira.txt
+                        done <<< $(<content.txt)
+                        echo $version > latests.txt
+                        sed -e 's/^/ \* /' jira.txt >> latests.txt
+                        cat latests.txt changes.txt > new_changes.txt
+                        echo "" >> new_changes.txt
+                        cat new_changes.txt > changes.txt
+                        git add changes.txt
+                        git commit -m "[skip ci] changes.txt updated"
+                        git push
+                        
+                        mvn -B -s .circleci/.circleci.settings.xml release:prepare
+                       fi
+                   fi                   
+                   
+            - store_artifacts:
+                path: ~/repo/target 
+             
+            - store_test_results:
+                path: junitreport
+                
+            - save_cache:
+                paths:
+                    - node_modules
+                    - ~/.m2
+                key: v1-dependencies-{{ checksum "package.json" }}-{{ checksum "pom.xml" }}
+            
+    deploy:
+        working_directory: ~/deploy
+        docker:
+          - image: ansible/ansible:ubuntu1604
+        
+        environment:
+            ANSIBLE_HOST_KEY_CHECKING: no
+            
+        steps:
+          # Installation
+          - run:
+              name: Install ansible
+              command: |
+                pip install ansible
+              
+          - checkout
+        
+          - run:
+              name: Clone git repo
+              command: git clone git@github.com:scoperetail/oms-playbook.git
+                
+          - run:
+              name: deploy OMS UI
+              command: |
+                cd oms-playbook/deploy-build            
+                if [[ ! $ENV ]]
+                then
+                    ENV=dev
+                fi
+                ansible-playbook -i environments/$ENV site.yml -e "host=frontend"
+        
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - deploy:
+           requires:
+              - build
+           filters:
+            branches:
+              only: master 
+

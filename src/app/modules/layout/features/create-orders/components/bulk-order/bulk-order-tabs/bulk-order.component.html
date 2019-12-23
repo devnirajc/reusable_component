@@ -1,0 +1,13 @@
+
+<!--<app-tabs>
+  <app-tab   tabTitle="{{bulkOrder}}">
+     <app-bulk-order-upload (redirectToInbox) = "setActiveInactive()"></app-bulk-order-upload> 
+  </app-tab>
+  <app-tab  tabTitle="{{inBox}}">
+      <app-bulk-order-inbox ></app-bulk-order-inbox>  
+  </app-tab>
+</app-tabs>-->
+<app-tab-button-panel [buttonItems]="buttonItems">
+
+</app-tab-button-panel>
+<router-outlet></router-outlet>

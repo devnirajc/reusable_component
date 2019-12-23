@@ -1,0 +1,6 @@
+<ng-container>
+  <select (change)="onChange($event.target.value)" (focusout)="onFocusOut($event.target.value)" [name]="name" [ngClass]="inputClass" [disabled]="disabled" [hidden]="hidden" [required]="required">
+    <option *ngIf="defaultValue != 'Select'" value="" selected>{{defaultValue}}</option>
+    <option *ngFor="let data of receivedInputData" [value]="optionsValue(data)" [attr.selected]="defaultValueSelection(data)">{{optionsLabel(data)}}</option>
+  </select>
+</ng-container>

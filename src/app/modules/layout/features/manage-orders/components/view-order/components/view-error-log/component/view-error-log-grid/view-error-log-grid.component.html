@@ -1,0 +1,6 @@
+<app-grid [gridConfig]="gridConfig" [coloumnConfig]="coloumnConfig" [gridData]="data" (triggerSortEvent)="triggerSorting($event)"></app-grid>
+<div [hidden] ="data.length == 0">
+    <app-pagination [page]="page" (goPrev)="goPrev()" (goNext)="goNext()" (goPage) ="goPage($event)" (changeInPerPage)="changeInperPage($event)" [count]="total" 
+    [perPage]="limit" [pagesToShow]="numberOfPagesOptionsToBeDispalyed" [pageLimitArray]='pagesLimitArray'>
+    </app-pagination>
+  </div>

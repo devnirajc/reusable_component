@@ -1,0 +1,25 @@
+<nav id="sidebar" *ngIf="sidebarData.length">
+    <ul class="list-unstyled components">
+        <perfect-scrollbar class="maxHeightCross">
+            <li *ngFor="let item of sidebarData; let i = index;" (click)="menuClick(item)">
+                <a [routerLink]="item.link" [ngClass]="{'active': selectedItem == item}" *ngIf="item.sub == null">
+                    <i [class]="item.icon" aria-hidden="true" *ngIf="item.icon"></i>
+                    <span class="nav-text">{{item.name}}</span>
+                </a>
+
+                <a href="#{{i}}" data-toggle="collapse" aria-expanded="false" *ngIf="item.sub">
+                    <i [class]="item.icon" aria-hidden="true" *ngIf="item.icon"></i>
+                    <span class="nav-text">{{item.name}}</span>
+                </a>
+                <ul class="collapse list-unstyled" id="{{i}}" *ngIf="item.sub" [style.top]= "( i > 7 && item.sub.length > 3) ? '-70px' : null">
+                    <li *ngFor="let subItem of item.sub; let i = index" (click)="menuClick(subItem)">
+                        <a [routerLink]="subItem.link" [ngClass]="{'active': selectedItem == subItem}">
+                            <i [class]="subItem.icon" aria-hidden="true" *ngIf="subItem.icon"></i> {{subItem.name}}
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </perfect-scrollbar>
+        <a class="triangle" (click)="sidebarOpen()"></a>
+    </ul>
+</nav>

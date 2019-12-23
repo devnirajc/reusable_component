@@ -1,0 +1,162 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <name>OMS Webapp</name>
+  <description>OMS Webapp UI</description>
+  <groupId>com.scoperetail</groupId>             
+  <artifactId>oms-ui</artifactId>
+  <version>1.68-SNAPSHOT</version>
+  <packaging>pom</packaging>
+  
+	<properties>		
+		<sonar.host.url>http://scopesonar.centralus.cloudapp.azure.com</sonar.host.url>
+		<sonar.login>scopeoms</sonar.login>
+		<sonar.password>scopeoms</sonar.password>
+		<sonar.typescript.lcov.reportPaths>coverage/lcov.info</sonar.typescript.lcov.reportPaths>
+		<sonar.testExecutionReportPaths>reports/ut_report.xml</sonar.testExecutionReportPaths>
+		<sonar.exclusions>**/*.spec.ts</sonar.exclusions>
+		<sonar.sources>src</sonar.sources>
+		<sonar.tests>src</sonar.tests>
+		<sonar.test.inclusions>**/*.spec.ts</sonar.test.inclusions>
+	</properties>
+	
+	<scm>
+	  <developerConnection>scm:git:git@github.com:scoperetail/oms-webapp.git</developerConnection>
+	  <tag>HEAD</tag>
+	</scm>
+	
+  <build>
+    <plugins>
+	  <plugin>
+		<groupId>com.github.eirslett</groupId>
+		<artifactId>frontend-maven-plugin</artifactId>
+		<version>1.6</version>
+		<!--<configuration>
+		  <workingDirectory>${angular.project.location}</workingDirectory>
+		  <installDirectory>${angular.project.nodeinstallation}</installDirectory>
+		</configuration>-->
+		<executions>
+		  <!-- It will install nodejs and npm -->
+		  <execution>
+			<id>install node and npm</id>
+			<goals>
+			  <goal>install-node-and-npm</goal>
+			</goals>
+			<configuration>
+			  <nodeVersion>v8.11.1</nodeVersion>
+			  <npmVersion>5.6.0</npmVersion>
+			</configuration>
+		  </execution>
+
+		  <!-- It will execute command "npm install" inside "/e2e-angular2" directory -->
+		  <execution>
+			<id>npm install</id>
+			<goals>
+			  <goal>npm</goal>
+			</goals>
+			<configuration>
+			  <arguments>install</arguments>
+			</configuration>
+		  </execution>
+		  <!-- It will execute command "npm build" inside "/e2e-angular2" directory 
+						to clean and create "/dist" directory -->
+		  <execution>
+			<id>npm build</id>
+			<goals>
+			  <goal>npm</goal>
+			</goals>
+			<configuration>
+			  <arguments>run build</arguments>
+			</configuration>
+		  </execution>		  
+		</executions>
+	  </plugin>
+	  
+	  <plugin>
+		<groupId>org.codehaus.mojo</groupId>
+		<artifactId>exec-maven-plugin</artifactId>
+		<version>1.3.2</version>
+		<executions>
+			<execution>
+				<id>npm test</id>
+				<goals>
+					<goal>exec</goal>
+				</goals>
+				<phase>test</phase>
+				<configuration>
+					<executable>npm</executable>
+					<arguments>
+						<argument>run</argument>
+						<argument>test</argument>
+						<argument>--</argument>						
+						<argument>--code-coverage</argument>
+					</arguments>
+				</configuration>
+			</execution>
+		</executions>
+	  </plugin>
+
+	  <plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-assembly-plugin</artifactId>
+			<configuration>
+	 <!--<finalName>oms-ui</finalName>-->
+			<appendAssemblyId>false</appendAssemblyId>
+				<descriptors>
+					<descriptor>src/main/resources/distribution/ui-distribution.xml</descriptor>
+				</descriptors>
+			</configuration>
+			<executions>
+				<execution>
+					<phase>package</phase>
+					<goals>
+						<goal>single</goal>
+					</goals>
+				</execution>
+			</executions>
+		</plugin>
+		<!--		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-release-plugin</artifactId>
+			<version>2.5.3</version>
+			<configuration>
+				<scmCommentPrefix>[skip ci]</scmCommentPrefix>
+			</configuration>
+		</plugin>-->
+  </plugins>
+ </build>
+	 <repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>scope-artifactory-releases</name>
+			<url>http://scopeartifactory.centralus.cloudapp.azure.com/artifactory/maven-virtual</url>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>maven-central</id>
+			<name>maven</name>
+			<url>https://repo.maven.apache.org/maven2/</url>
+		</repository>
+	</repositories>
+	<distributionManagement>
+		<repository>
+			<id>central</id>
+			<name>scope-artifactory-releases</name>
+			<url>http://scopeartifactory.centralus.cloudapp.azure.com/artifactory/maven-release</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>scope-artifactory-snapshots</name>
+			<url>http://scopeartifactory.centralus.cloudapp.azure.com/artifactory/maven-snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

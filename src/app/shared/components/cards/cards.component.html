@@ -1,0 +1,15 @@
+<div [ngClass]="{'card-with-radio': selectionType.toLowerCase() ==='radio' }">
+  <span class="radioBtn" *ngIf="selectionType.toLowerCase() ==='radio'">
+    <input (click)="selected(cardDetail)" name="radio" type="radio" />
+  </span>
+  <div class="card" [ngClass]="cls">
+    <div class="card-body">
+      <div class="text-right">
+        <span *ngIf="!isCheckBoxtoChild && selectionType.toLowerCase() ==='checkbox'">
+          <input (click)="selected(cardDetail)" [checked]="cardDetail.selected" type="checkbox" />
+        </span>
+      </div>
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

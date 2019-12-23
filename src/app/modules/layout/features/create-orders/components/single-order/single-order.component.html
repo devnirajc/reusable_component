@@ -1,0 +1,19 @@
+<h3 class="text-muted">Single Order</h3>
+<hr />
+
+<app-single-order-form (submitEvent)="onSubmit()" (validationCheck)="validationCheck($event)" (fetchForm)="fetchForm($event)" [reset]="reset" [form]="form"> </app-single-order-form>
+
+<div class="addLine float-right">
+    <span class="error" *ngIf="displayGridErrorMessage">{{displayMinAndMaxErrorMsg()}} &nbsp;&nbsp;</span>
+    <app-button (onButtonClick)="addRow()" [cls]="previousBtnClass" [previousIconClass]="previousIconClass" [text]="addLineText"></app-button>
+</div>
+<app-single-order-grid (submitEvent)="onSubmit()" (addRow)="addRow()" [data]="data" [uom]="form && form.controls.uom.value ? form.controls.uom.value : ''" [reset]="reset" (deleteActionTrigger)="deleteAction($event)"></app-single-order-grid>
+<div class="float-right">
+    <app-button [text]="submitText" (onButtonClick)="onSubmit($event)" [cls]="submitBtnClass" ></app-button>&nbsp;
+    <app-button [text]="cancelBtnText" [cls]="cancelBtnClass" (click)="onCancel()"></app-button> 
+</div>
+<ng-template #orderSuccessfullyCreated>
+    <div>
+        Order created successfully
+    </div>
+</ng-template>

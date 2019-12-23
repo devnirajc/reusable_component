@@ -1,0 +1,15 @@
+<h4 class="blue-text">View</h4>
+<hr>
+<div class="row">
+  <div class="col-md-12 info-details">     
+    <div class="row">  
+      <div class="col-md-4" *ngFor="let changeData of detailsToBeDisplayed">   
+          <div class="form-group row">   
+            <div class="col-md-5 font-weight-bold">{{changeData.label}}</div>
+            <div class="col-md-7 word-wrap">{{formatTheTemplate(changeData)}}</div>
+          </div>     
+      </div>    
+    </div>
+  </div>
+</div>
+<app-view-change-log-grid></app-view-change-log-grid>

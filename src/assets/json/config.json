@@ -1,0 +1,15 @@
+{
+  "manageOrders": {
+    "infiniteScrolling": false,
+    "stickyHeader": false,
+    "limit": 25,
+    "threshhold": 200,
+    "totalQuantityConditions": [">=", "<=", "=", "<", ">"],
+    "defaultStatus": 202
+  },
+  "manageConfig": {
+    "availQtyEnabled": false,
+    "inTranQtyEnabled": true,
+    "receivingProgQtyEnabled": true
+  }
+}

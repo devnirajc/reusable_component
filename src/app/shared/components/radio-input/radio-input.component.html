@@ -1,0 +1,8 @@
+<div class="card" style="height: 12rem;">
+  <div class="card-header">
+    <input type="radio" [checked]="checked" [name]="radioName" [value]="radioValue" (click)="isChecked($event.target.value)"> {{radioLabel}}
+  </div>
+  <div class="card-body">
+    <ng-container *ngTemplateOutlet="inputTemplate"></ng-container>
+  </div>
+</div>

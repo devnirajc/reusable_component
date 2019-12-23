@@ -1,0 +1,133 @@
+<div class="table-responsive scroll-in-mobile" #gridWrapper>
+  <table [ngClass]="gridClass()" class="table-grid">
+    <thead>
+      <tr>
+        <th width="20" *ngIf="displayCheckBox">
+          <input type="checkbox" (click)="allSelected($event)" [disabled]="gridData.length == 0" [checked]="allItemsChecked()">
+        </th>
+        <ng-container *ngFor="let colDef of coloumnConfig">
+          <th [ngClass]="{'text-center' : calColSpan(colDef.config) > 0, 'align-top' : calRowSpan(colDef.config) > 0 }" *ngIf="isSubHeader(colDef.config) == 'N' && renderHeader(colDef.config) == 'Y'"
+            [attr.colspan]="calColSpan(colDef.config)" [attr.rowspan]="calRowSpan(colDef.config)" [width]="colDef.config && colDef.config.width ? colDef.config.width : ''"
+            [ngClass]="{'link':colDef.config && colDef.config.enableSorting && gridData.length > 0 }">
+            <div (click)="triggerSort(colDef.config)">
+              {{colDef.config.title}}
+              <ng-container *ngIf="colDef.config && colDef.config.requiredIcon">
+                <sup class="text-danger">*</sup>
+              </ng-container>
+              <ng-container *ngIf="colDef.config && colDef.config.enableSorting && gridData.length > 0">
+                <i class="fa fa-sort"></i>
+              </ng-container>
+            </div>
+          </th>
+        </ng-container>
+      </tr>
+
+      <tr>
+        <ng-container *ngFor="let colDef of coloumnConfig; let i = index">
+          <th *ngIf="isSubHeader(colDef.config) == 'Y' && renderHeader(colDef.config) == 'Y'" [width]="colDef.config && colDef.config.width ? colDef.config.width : ''">
+            {{colDef.config.title}}
+          </th>
+        </ng-container>
+      </tr>
+
+    </thead>
+
+    <tbody>
+      <ng-container *ngFor="let data of gridData; let index = index ;">
+        <tr>
+          <td width="20" *ngIf="displayCheckBox">
+            <input type="checkbox" [disabled]="disableCheckBox(data,index)" (click)="rowSelection(data,index,$event)" [checked]="data.selected">
+          </td>
+          <ng-container *ngFor="let colDef of coloumnConfig">
+            <ng-container *ngIf="colDef.config.name === 'actions'">
+              <td [width]="colDef.config && colDef.config.width ? colDef.config.width : ''">
+                <ng-container *ngFor="let action of colDef.config.actionItems">
+                  <app-button [disabled]="disabledButton(action,data,index)" (onButtonClick)="action.config.click(data,action,index)" [cls]="action.config.btnCls"
+                    [text]="" [iconClass]="action.config.iconClassMethod ? action.config.iconClassMethod(action,index) : action.config.iconClass"
+                    [iconTooltip]="action.config.iconTooltip" [hidden]="hideButton(action,index,data)" ></app-button>
+                </ng-container>
+              </td>
+            </ng-container>
+            <ng-container *ngIf="colDef.config.name != 'actions'">
+              <td *ngIf="renderColumn(colDef.config) == 'Y' && (data.hasOwnProperty(colDef.config.name) || getRowSpan(colDef.config) == '');"
+                [width]="colDef.config && colDef.config.width ?
+                  colDef.config.width : ''">
+                <ng-container *ngIf=" !isEditable(data,colDef.config,index)">
+                  <div class="" (click)="cellClick(data,colDef.config,index)" [innerHtml]="customTemplate(data,colDef.config,index)"></div>
+                </ng-container>
+                <ng-container *ngIf="isEditable(data,colDef.config,index)">
+                  <ng-container *ngIf="checkTypeofEditableField('input',colDef.config,index)">
+                    <input dirty="false" (focus)="onInputFocus(colDef.config,index)" [type]="getInputSubType(colDef.config,index)" [checked]="isChecked(data,colDef.config,index)"
+                      [value]="printValue(data,colDef.config,index)" (blur)="onBlur($event,data,colDef.config,index)" (input)="onInput($event,data,colDef.config,index)" [min]="setMinimum(colDef.config,index)"
+                      [max]="setMaximum(colDef.config,index)" [attr.maxlength]="setMaxLength(colDef.config,index)" (keyup)="onKeyUp($event,colDef.config,index)"
+                      (keypress)="onKeyPress($event,colDef.config,index)" [name]="inputIdentifier(colDef.config,index)" (click)="inputClick($event,data,colDef.config,index)"
+                      (paste)="onPaste($event,colDef.config,index)" [disabled]="disableField(data,colDef.config,index)" (keydown)="onKeydown($event,colDef.config,index)"
+                      [ngClass]="getInputClass(colDef.config,index)" />
+                  </ng-container>
+                  <ng-container *ngIf="checkTypeofEditableField('dropdown',colDef.config,index)">
+                    <app-drop-down [name]="inputIdentifier(colDef.config,index)" [defaultOptionsValue]="colDef.config.cellEdit.config.defaultOptionsValue"
+                      [defaultDisplayLabel]="colDef.config.cellEdit.config.defaultDisplayLabel" [inputClass]="getInputClass(colDef.config,index)"
+                      [value]="printValue(data,colDef.config,index)" [defaultValue]="colDef.config.cellEdit.config.defaultValue" [disabled]="isDisabled(colDef.config)" [receivedInputData]="printOptonsValue(colDef.config,index)"
+                      (selectedInputData)="onChange($event,colDef.config,index)"></app-drop-down>
+                  </ng-container>
+                  <ng-container *ngIf="checkTypeofEditableField('datepicker',colDef.config,index)">
+                    <app-datepicker [placeholder]="colDef.config.cellEdit.config.placeholder" [datepickerCls]="colDef.config.datepickerCls" [value]="setValue(colDef.config,data)"
+                      [hidden]="isHidden(colDef.config,data)" (change)="onChange($event,colDef.config,data)" [readonly]="isReadOnly(colDef.config,data)"
+                      [showDefaultDate]="colDef.config.cellEdit.config.showDefaultDate" [isDisabled]="isDisabled(colDef.config,data)"
+                      [maxDate]="fetchMaxDate(colDef.config,data)" [minDate]="fetchMinDate(colDef.config,data)" [placeholder]="mm/dd/yyyy"
+                      [dateFormat]="mm/dd/yyyy"></app-datepicker>
+                  </ng-container>
+                  <ng-container *ngIf="toDisplayError(colDef.config,index)">
+                    <div class="error">
+                      {{toDisplayErrorMessage(colDef.config,index)}}
+                    </div>
+                  </ng-container>
+                </ng-container>
+              </td>
+            </ng-container>
+          </ng-container>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="gridData.length == 0">
+        <td class="addColspan" [attr.colspan]="coloumnConfig.length + 1">
+          <p>{{noRecord()}}</p>
+        </td>
+      </ng-container>
+    </tbody>
+  </table>
+
+  <table [ngClass]="gridClass()" class="stickyHeader">
+    <thead>
+      <tr>
+        <th width="20" *ngIf="displayCheckBox">
+          <input type="checkbox" (click)="allSelected($event)" [disabled]="gridData.length == 0" [checked]="allItemsChecked()">
+        </th>
+        <ng-container *ngFor="let colDef of coloumnConfig">
+          <th [ngClass]="{'text-center' : calColSpan(colDef.config) > 0, 'align-top' : calRowSpan(colDef.config) > 0 }" *ngIf="isSubHeader(colDef.config) == 'N' && renderHeader(colDef.config) == 'Y'"
+            [attr.colspan]="calColSpan(colDef.config)" [attr.rowspan]="calRowSpan(colDef.config)" [width]="colDef.config && colDef.config.width ? colDef.config.width : ''"
+            [ngClass]="{'link':colDef.config && colDef.config.enableSorting && gridData.length > 0 }">
+            <div (click)="triggerSort(colDef.config)">
+              {{colDef.config.title}}
+              <ng-container *ngIf="colDef.config && colDef.config.requiredIcon">
+                <sup class="text-danger">*</sup>
+              </ng-container>
+              <ng-container *ngIf="colDef.config && colDef.config.enableSorting && gridData.length > 0">
+                <i class="fa fa-sort"></i>
+              </ng-container>
+            </div>
+          </th>
+        </ng-container>
+      </tr>
+
+      <tr>
+        <ng-container *ngFor="let colDef of coloumnConfig; let i = index">
+          <th *ngIf="isSubHeader(colDef.config) == 'Y' && renderHeader(colDef.config) == 'Y'" [width]="colDef.config && colDef.config.width ? colDef.config.width : ''">
+            {{colDef.config.title}}
+          </th>
+        </ng-container>
+      </tr>
+
+    </thead>
+  </table>
+</div>
+

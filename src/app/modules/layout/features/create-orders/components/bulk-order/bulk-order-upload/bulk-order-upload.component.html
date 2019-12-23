@@ -1,0 +1,31 @@
+<ng-container>
+  <div class="row">
+    <div class="col-md-12 pull-right mb-2">
+      <a class="btn btn-outline-primary btn-sm pull-right" (click)="exportPdf()">
+        <i class="fa fa-download" aria-hidden="true"></i> &nbsp; {{downloadTemplate}}
+      </a>
+    </div>
+  </div>
+  <div class="row" *ngIf="formFields?.length">
+    <div class="col-lg-6" >
+      <app-form (fetchForm)="fetchBulkOrderForm($event)" [formFields]="formFields"></app-form>
+    </div>
+    <div class="col-lg-6">
+      <app-drag-drop [dragDropCls]="dragDropCls" (drop)="onDrop($event)" (dragOver)="onDragOver($event)" (dragLeave)="onDragLeave($event)">
+        <app-file-upload (InputChange)="InputChange($event)" [fileDropContainer]="fileDropContainer" [resetFilesData]="resetFilesData"></app-file-upload>
+        <div class="dropAreaContainer">
+            <span><i class="fa fa-cloud-upload" aria-hidden="true"></i></span>
+            <p class="dragMessage">{{dragAndDrop}}</p>
+            <p class="file-names">{{fileName}}</p>
+        </div>
+      </app-drag-drop>
+      <div class="error" *ngIf="isValidFileExtension">{{invalidFileFormat}}</div>
+      <div class="float-right mt-3">
+        <app-button [text]="submitText" (onButtonClick)="onSubmit($event)" [cls]="submitBtnClass"></app-button> &nbsp;
+        <app-button [text]="resetBtnText" [cls]="cancelBtnClass" (click)="resetForm()"></app-button>
+      </div>
+    </div>
+  </div>
+  <br>
+</ng-container>
+

@@ -1,0 +1,30 @@
+.table-grid {
+  th {
+    font-weight: 500;
+    padding: .3rem;
+  }
+
+  td {
+    padding: .2rem;
+
+    &:focus-within {
+      outline: 1px solid #80bdff;
+    }
+
+    input {
+      border: 0 none;
+      box-shadow: none;
+    }
+
+    &.error {
+      box-shadow: inset 0px 0px 7px red;
+    }
+  }
+
+  font-size: 0.8rem;
+}
+
+.scroll-in-mobile {
+  width: 100%;
+  overflow: auto;
+}

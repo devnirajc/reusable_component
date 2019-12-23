@@ -1,0 +1,10 @@
+<ng-container>
+  <div class="toggle-switch">
+      <input type="checkbox" class="toggle-switch-checkbox"
+       [id]="name" [checked]="value" (change)="changeValue($event.target.checked)" [disabled]= "disabled" [name]="name">
+      <label class="toggle-switch-label" [for]="name">
+          <span class="toggle-switch-inner"></span>
+          <span class="toggle-switch-switch"></span>
+      </label>
+  </div>
+</ng-container>

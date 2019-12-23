@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col-md-11">
+    <h3 class="text-muted">Search</h3>
+  </div>
+  <div class="col-md-1" id="DownloadCsvReport" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <a class="btn btn-sm btn-grey text-dark floatRight custom-btn"><i class="fa fa-ellipsis-h" aria-hidden="true"></i></a>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="DownloadCsvReport">
+      <a class="dropdown-item custom-dropdown-item" (click)="checkReport()">{{exportcsvReport}}</a>
+    </div>
+  </div>
+</div>
+<hr />
+
+<app-search-orders-form (formReset)="formReset($event)" (searchGridData)="triggerGridSearch($event)" [queryParams]="queryParams"></app-search-orders-form>
+
+<div class="text-right mt-1 mb-2" *ngIf="permissions.canEdit">
+  <app-button [cls]="headerUpdateCls" [text]="headerUpdate" [disabled]="selectedRecords.length == 0" (onButtonClick)="navigateToHeaderUpdate()"></app-button>
+</div>
+
+<app-search-orders-grid appInfiniteScroll [infiniteScrollEnable] = "infiniteScrollEnable" (scroll)="scrollEvent()" [debounceTime]="1000" [stopDataScroll]="stoppedScrolling" [showLoader]="showLoader" [permissions]="permissions" (navigateTo)="navigateTo($event)" [allChecked] = "allChecked" (allSelect) = "allItemsSelected($event)" (rowSelect)="rowSelected($event)" [noDataFound]="noDataFound" [gridData]="data" (sort)="triggerSorting($event)"></app-search-orders-grid>
+
+<div *ngIf ="data?.length == totalThrushHold && infiniteScrollEnable" class="row loadMoreBtnWrapper">
+  <button class="btn btn-primary" (click) = "loadMoreData()">Load More</button>
+</div>
+
+<div [hidden]="data.length == 0 && !infiniteScrollEnable">
+    <app-pagination [infiniteScrollEnable] = "infiniteScrollEnable" [page]="page" (goPrev)="goPrev()" (goNext)="goNext()" (goPage)="goPage($event)" (changeInPerPage)="changeInperPage($event)"
+      [count]="total" [perPage]="limit" [pagesToShow]="numberOfPagesOptionsToBeDispalyed" [pageLimitArray]='pagesLimitArray'>
+    </app-pagination>
+</div>
+
+  

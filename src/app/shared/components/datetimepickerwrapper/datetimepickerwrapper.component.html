@@ -1,0 +1,27 @@
+<ng-container>
+  <div class="date-time-picker input-group input-group-sm">
+    <input type="text" class=" form-control" [value]="" [disabled]="disabled" [readonly]="readonly" (click)="timePickerClick()" [placeholder]="placeholder" />
+    <div class="input-group-append">
+        <button class="btn btn-outline-secondary fa" [ngClass]="{'fa-clock-o' : !showCalendar , 'fa-calendar' : showCalendar}" type="button" aria-expanded="false"
+        (click)="timePickerClick()"></button>
+      <!-- <button class="btn btn-outline-secondary" type="button" aria-expanded="false" (click)="timePickerClick()"><i [ngClass]="{'fa-clock-o' : !showCalendar , 'fa-calendar' : showCalendar}"></i></button> -->
+    </div>
+    <div class="dropdown-menu" [ngClass]="{'show': displayDropDown, 'hide':!displayDropDown}">
+      <div [ngClass]="{'showDiv' : showCalendar , 'hideDiv' : !showCalendar}">
+        <!-- <ngb-datepicker #dp [(ngModel)]="datePickerModel" (navigate)="navigate($event)" (select)="onDateTimeSelection()"></ngb-datepicker> -->
+        <ngb-datepicker [minDate]="formatDateForDatePicker(minDate)"
+                [maxDate]="formatDateForDatePicker(maxDate)"
+                [markDisabled]="isDisabled"
+                #dp [(ngModel)]="datePickerModel" (navigate)="navigate($event)" (select)="onDateTimeSelection()"></ngb-datepicker>
+      </div>
+      <div class="time-picker" [ngClass]=" {'showDiv' : !showCalendar , 'hideDiv' : showCalendar}">
+        <ngb-timepicker  [(ngModel)]="timePickerModel" [meridian]="meridian" [spinners]="showSpinners" [seconds]="seconds"
+          [readonlyInputs]="readonlyInputs" (ngModelChange)="onDateTimeSelection()"></ngb-timepicker>
+      </div>
+      <div class="footer" *ngIf = "showCalendarSetting || showCalendarSetting == null ">
+        <button class="fa" [ngClass]="{'fa-clock-o' : showCalendar , 'fa-calendar' : !showCalendar}" aria-hidden="true"
+          (click)="showCalendar = !showCalendar"></button>
+      </div>
+    </div>
+  </div>
+</ng-container>

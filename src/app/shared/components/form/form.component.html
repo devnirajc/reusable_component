@@ -1,0 +1,68 @@
+<form [formGroup]="form">
+  <div class="row">
+    <ng-container *ngFor="let item of formFields">
+      <div [ngClass]="formFieldWidth(item.config)" *ngIf="!isHidden(item.config)">
+        <div [ngClass]="displayLabelInline(item.config)">
+          <ng-container *ngIf="item.config.label || item.config.renderLabel">
+            <div [innerHtml]="printFieldLabel(item.config)" [ngClass]="fieldLabelCls(item.config)"></div>
+          </ng-container>
+          <div [ngClass]="fieldWidth(item.config)">
+            <ng-container *ngIf="item.config.type.toLowerCase() == 'input'">              
+              <input [maxlength]="setMaxLength(item.config)" [type]="getInputSubType(item.config)" (click)="onClick($event,item.config)"
+              [placeholder]="printPlaceHolder(item.config)" (blur)="onBlur($event,item.config)" [ngClass]="inputClass(item.config)"
+              [name]="item.config.formName" [formControlName]="item.config.formName" [min]="setMinimum(item.config)"
+              [max]="setMaximum(item.config)" [value]="inputValue(item.config)" (keyup)="onKeyUp($event,item.config)"
+              (keydown)="onKeydown($event,item.config)" (input)="onInput($event,item.config)" (keypress)="onKeyPress($event,item.config)" [readonly]="isReadOnly(item.config)"
+              [attr.tabindex]="tabIndex(item.config)" [tooltip]="fetchToolTip(item.config)" (paste)="onPaste($event,item.config)" />
+              <i class="fa fa-spinner fa-spin loader" *ngIf="showLoader(item.config)"></i>             
+            </ng-container>
+            <ng-container *ngIf="item.config.type.toLowerCase() == 'textarea'">
+              <textarea [maxlength]="setMaxLength(item.config)" (blur)="onBlur($event,item.config)" [ngClass]="inputClass(item.config)"
+                [name]="item.config.formName" [formControlName]="item.config.formName" (keyup)="onKeyUp($event,item.config)"
+                (keypress)="onKeyPress($event,item.config)" (paste)="onPaste($event,item.config)" [tooltip]="fetchToolTip(item.config)"
+                [readonly]="isReadOnly(item.config)" (keydown)="onKeydown($event,item.config)" (input)="onInput($event,item.config)"></textarea>
+            </ng-container>
+            <ng-container *ngIf="item.config.type.toLowerCase() == 'dropdown'">
+              <app-drop-down [name]="item.config.formName" [value]="inputValue(item.config)" [defaultOptionsValue]="item.config.defaultOptionsValue"
+                [defaultDisplayLabel]="item.config.defaultDisplayLabel" [receivedInputData]="fetchOptions(item.config)"
+                [inputClass]="fetchFieldClass(item.config)" [defaultValue]="defaultValue(item.config)"
+                (selectedInputData)="onChange($event,item.config)" [tooltip]="fetchToolTip(item.config)" [disabled]="isDisabled(item.config)"></app-drop-down>
+            </ng-container>
+            <ng-container *ngIf="item.config.type.toLowerCase() == 'datefield'">
+              <app-datepicker [datepickerCls]="inputClass(item.config)" [placeholder]="item.config.placeholder"
+                [datepickerCls]="item.config.datepickerCls" [value]="item.config.defaultValue" [hidden]="isHidden(item.config)"
+                (change)="onChange($event,item.config)" [readonly]="isReadOnly(item.config)" [showDefaultDate]="item.config.showDefaultDate"
+                [isDisabled]="isDisabled(item.config)" [tooltip]="fetchToolTip(item.config)" [maxDate]="fetchMaxDate(item.config)"
+                [minDate]="fetchMinDate(item.config)" [placeholder]="mm/dd/yyyy" [dateFormat]="mm/dd/yyyy" (blur)="onBlur($event,item.config)"></app-datepicker>
+            </ng-container>
+            <ng-container *ngIf="item.config.type.toLowerCase() == 'datetimefield'">              
+              <app-datetimepickerwrapper [value]="item.config.defaultValue" [meridian]="item.config.meridian" 
+              [seconds] = "item.config.seconds" [readonlyInputs]="item.config.readonlyInputs"
+                [showDefaultDate]="item.config.showDefaultDate" [showCalendarSetting]="item.config.dateTimePicker"
+                [maxDate]="fetchMaxDate(item.config)" [minDate]="fetchMinDate(item.config)" (blur)="onBlur($event,item.config)"  [placeholder]="printPlaceHolder(item.config)" (change)="onChange($event,item.config)" [tooltip]="fetchToolTip(item.config)">
+              </app-datetimepickerwrapper>
+            </ng-container>
+            <ng-container *ngIf="item.config.type.toLowerCase() == 'typeaheadtags'">
+              <app-typeahead-tags-input (noOptionMatched)="onNoOptionsMatch($event,item.config)" [tooltip]="fetchToolTip(item.config)"
+                (tagsChanged)="onTagsChanged($event,item.config)" (maxTagsReached)="onMaxTagsReached($event,item.config)"
+                [fieldWidthCls]="inputClass(item.config)" [formName]="item.config.formName" [placeholder]="item.config.placeholder"></app-typeahead-tags-input>
+            </ng-container>
+            <ng-container *ngIf="item.config.type.toLowerCase() == 'checkboxgroup'">
+              <app-multi-checkbox [defaultOptionsValue]="item.config.defaultOptionsValue" [defaultDisplayLabel]="item.config.defaultDisplayLabel" [alignment]="item.config.alignment ? item.config.alignment : alignment" 
+              [formName]="item.config.formName" [options]="fetchOptions(item.config)" [selectedValues]="inputValue(item.config)" (toggle)="onToggle($event,item.config)"></app-multi-checkbox>
+            </ng-container>
+            <ng-container *ngIf="item.config.errorMessages">
+              <div class="error" *ngIf="toDisplayError(item.config)">
+                {{toDisplayErrorMessage(item.config)}}
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <ng-container *ngIf="item.config.type.toLowerCase() == 'button'">
+          <app-button [cls]="getBtnCls(item.config)" [text]="getBtnText(item.config)" (onButtonClick)="getBtnClick($event, item.config)"
+            [disabled]="isDisabled(item.config)"></app-button>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+</form>

@@ -1,0 +1,6 @@
+<h4 class="blue-text">Order Level Changes</h4>
+<app-grid [gridConfig]="gridConfig" [stickyHeader]="stickyHeader" [coloumnConfig]="logisticsColoumnConfig" [gridData]="logisticsdata"></app-grid>
+<h4 class="blue-text">Product Level Changes</h4>
+<!-- <app-grid [gridConfig]="gridConfig"  [stickyHeader]="stickyHeader" [coloumnConfig]="coloumnConfig" [gridData]="data" ></app-grid> -->
+<app-editable-grid [editableGridConfig]="editableGridConfig" [editableConfig]="editableConfig" [gridData]="data"></app-editable-grid>
+<app-button [text]="okButtonText" (onButtonClick)="navigate()" cls="btn btn-primary btn-sm pull-right"></app-button>

@@ -1,0 +1,9 @@
+<ng-container>
+  <div class="range-slider">
+     <input type="range" [disabled] ="disable" [ngStyle]="getStyle()" min="{{minimumRange}}" max="{{maximumRange}}" [value]="value" class="slider" (change)="changeZoom(refValue.value)" (input)="changeZoom(refValue.value)" #refValue>
+     <div>
+      <span class="minR pull-left">{{minimumRange}} %</span>
+      <span class="maxR pull-right">{{maximumRange}} %</span>
+     </div>
+  </div>
+</ng-container>

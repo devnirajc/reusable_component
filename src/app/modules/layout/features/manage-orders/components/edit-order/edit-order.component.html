@@ -1,0 +1,53 @@
+<h3 class="text-muted">{{editOrder}}</h3>
+<hr />
+<!-- <app-panel [isFooterVisible]="detailsFooterVisible" [headerText]="detailsHeader"> -->
+<div class="row">
+  <div class="col-lg-7 col-md-12 info-details">
+    <div class="row">
+      <div class="col-md-6 col-md-6" *ngFor="let orderData of detailsToBeDisplayed">
+        <div class="form-group row">
+          <div class="col-md-4 font-weight-bold">{{orderData.label}}</div>
+          <div class="col-md-8 word-wrap">{{formatTheTemplate(orderData)}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-lg-5 col-md-12 order-level-details">
+    <div class="row">
+      <div class="col-md-12" *ngFor="let editHeaderdata of editHeaderInfoToBeDisplayed">
+        <div class="form-group row">
+          <div class="col-md-4 font-weight-bold">{{editHeaderdata.label}}
+            <sup *ngIf="editHeaderdata.type === 'datepicker'" class="text-danger">*</sup>
+          </div>
+          <div class="col-md-8">
+            <ng-container *ngIf="editHeaderdata.type === 'datepicker'">
+              <app-datepicker readonly="true" (change)="updateDate($event,editHeaderdata.key )" [minDate]="fetchDatepickerMinDate(editHeaderdata.key)" [maxDate]="fetchDatepickerMaxDate(editHeaderdata.key)" [showDefaultDate]="editHeaderdata.showDefaultDate" [value]="fetchDatepickerValue(editHeaderdata.key)"></app-datepicker>
+              <div class="error" *ngIf="!fetchDatepickerValue(editHeaderdata.key)">
+                Required
+              </div>
+            </ng-container>
+            <ng-container *ngIf="editHeaderdata.type === 'input'">
+              <input [ngClass]="editHeaderdata.inputClass" [type]="editHeaderdata.subType" [disabled]="editHeaderdata.disabled" [value]=""
+              />
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- <hr />
+</app-panel> -->
+<!-- <div class="addLine float-right">
+    <span class="error" *ngIf="displayGridErrorMessage">{{displayMinAndMaxErrorMsg()}} &nbsp;&nbsp;</span>
+    <p>
+      <app-button (onButtonClick)="addRow()" [cls]="previousBtnClass" [disabled]="addLineDisabled" [previousIconClass]="previousIconClass" [text]="addLineText"></app-button>
+    </p>
+</div> -->
+<app-grid [gridConfig]="gridConfig" [coloumnConfig]="coloumnConfig" [gridData]="data" (triggerSortEvent)="triggerSorting($event)"></app-grid>
+
+<ng-container *ngIf="data.length > 0">
+  <app-form (fetchForm)="fetchEditForm($event)" [formFields]="formFields"></app-form>
+</ng-container>

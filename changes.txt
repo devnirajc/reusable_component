@@ -1,0 +1,407 @@
+1.67
+ * SCOOP-4011: 'Create Source of Supply' Screen: UI related issues (Pending Deployment)
+1.66
+ * SCOOP-3721: ABS#247 - Auto-Hold > Edit - The \"Change Reason\" set while creating a rule,is not getting displayed on editing the same rule (In Progress)
+ * SCOOP-3935: CR#1 Manual Allocation,Product Cancellation & Manage Orders > Edit: BOH is not getting updated as per configuration (Pending Deployment)
+1.65
+ * SCOOP-3245: The status of Orders of type REGULAR or FIRM, changes to HOLD even when Enrichment process is in progress (Pending Deployment)
+ * SCOOP-3689: Search Inbound Schedule: Issues related to edit values in Grid (Pending Deployment)
+ * SCOOP-3855: TOG UI : Incorrect error message is displayed on Create New TOG Association page in UI (Pending Deployment)
+ * SCOOP-3857: CAMS UI : FileName in Extract Orders page is accepting the length of more than 8 characters (Pending Deployment)
+1.64
+ * SCOOP-3964: [UI] : System should display Supplier department with retail section codes and Name of the department in 'Supplier department'  drop-down in Manage order screen. (Pending Deployment)
+1.64
+ * SCOOP-3964: [UI] : System should display Supplier department with retail section codes and Name of the department in 'Supplier department'  drop-down in Manage order screen. (Pending Deployment)
+1.63
+ * SCOOP-3936: Manage Config Screen: UI related issues (Pending Deployment)
+1.62
+ * SCOOP-00: ul (ul)
+ * SCOOP-3101: CR#1 - Auto Allocation - Include in-transit/about to be received inventory along with BOH (Blocked)
+ * SCOOP-3383: Create Inbound Schedule - Route Code validation is missing (Merge Pending)
+ * SCOOP-3823: Single Order > UI - The toast message should be center aligned of the screen and the size should be increased (Pending Deployment)
+1.61
+ * SCOOP-3923: CR#2 Manual Allocation: Enable to sumbit the orders after updating applying BOH (Pending Deployment)
+1.60
+ * SCOOP-3105: CR#4 - Manage order additional filter to search by total quantity (Pending Deployment)
+ * SCOOP-3115: CR#10 - Part#2 - Manage Order - Ability to search the order by retail section code  (In Progress)
+1.59
+ * SCOOP-3101: CR#1 - Auto Allocation - Include in-transit/about to be received inventory along with BOH (Pending Deployment)
+ * SCOOP-3649: UI - New configuration screen for BOH(inventory) for supplier (Done)
+1.58
+ * SCOOP-3867: UI - UI is not loading for long time and Blank Screen is displayed for all the screens (Pending Deployment)
+1.57
+ * SCOOP-3706: [CAMS] : Only View icon should get display in 'Action' column  for those orders against which CAM File has generated in manage order screen. (Pending Deployment)
+ * SCOOP-3805: Create Attribute: User is able to create attribute rule for COG whose group type is 'Release Group' (In Progress)
+ * SCOOP-3823: Single Order > UI - The toast message should be center aligned of the screen and the size should be increased (In Progress)
+ * SCOOP-3834: Manage Order - Loader is displayed on the screen when the page is scrolled down even if all records are loaded completely. (Pending Deployment)
+ * SCOOP-3862: Manage order - Loader appears on every screen if the user continuously scrolls the records on the manage order page. (Pending Deployment)
+1.56
+ * SCOOP-3111: CR#7 - Bulk Order - Make the comment field optional and auto fill email and user ID  (Merge Pending)
+1.55
+ * SCOOP-3104: CR#3 - Provide the total quantity on Manage Order search results (In Progress)
+ * SCOOP-3600: ABS#246 - Manage Order Search shows incorrect records when ENTER is hit from keyboard to search (Pending Deployment)
+ * SCOOP-3764: 'Extract' button should be disabled before search result get display on UI. (Pending Deployment)
+ * SCOOP-3810: Order Visibility: OV is not getting generated when order has error log with 'Error Code-1026' (Ready for QA)
+1.54
+ * SCOOP-3426: ABS Dev - DSD Order Failure (Ready for QA)
+1.53
+ * SCOOP-1168: Create Auto Holding Rules: It is allowing to select process date and delivery dates from past (Pending Deployment)
+ * SCOOP-1599: On Single Order page, user is able to enter '0' and after a second the field get vanished automatically (Pending Deployment)
+ * SCOOP-1862: Route Id, Route code and Stop no. fields should be moved to extreme right on the screen. (Merge Pending)
+ * SCOOP-3369: Edit Auto Holding Rules: Edited rules are updated successfully without stating any change reason.  (Merge Pending)
+ * SCOOP-3407: Search Inbound Schedule: Fields 'PR', 'DL', 'RO', 'OS', 'RT' and 'cut-off' time are allowed to save by making the fields blank and validation message fails to display for the fields (Done)
+ * SCOOP-3600: Manage Order Search shows incorrect records when ENTER is hit from keyboard to search (To Do)
+ * SCOOP-3679: Pairing with dev (Done)
+ * SCOOP-3689: Search Inbound Schedule: Issues related to edit values in Grid (Pending Deployment)
+1.52
+ * SCOOP-00: ul (ul)
+ * SCOOP-3144: TOG Association Search and Edit - Duplicate TOG can be added for a single rule while editing. (Merge Pending)
+ * SCOOP-3149: Create TOG association - Validation message under the TOG field remains on the screen even after deleting the duplicate TOG. (Pending Deployment)
+ * SCOOP-3344: ABS#203 - Order goes on hold if we have process day as next day & #204 - Release Schedule: Process day Flag resets to '**'  from 'Y' after we search the schedule again (Merge Pending)
+ * SCOOP-3376: Search Inbound Schedule : Common UI issues related to Search Inbound Schedule page (In Progress)
+ * SCOOP-3384: Create inbound schedule: Multiple issues in Cut off time field (Pending Deployment)
+ * SCOOP-3386: Create Inbound schedule: Offset field accepts value 0 and 00 at header level and does not accept beyond 7 at grid level in Create Inbound Schedule page (Pending Deployment)
+ * SCOOP-3411: Search Inbound Schedule - values from the day level fields are removed then it dosent get saved in db (Merge Pending)
+ * SCOOP-3413: Clone Inbound Schedule: Common UI issues related to Clone Inbound Schedule page (Pending Deployment)
+ * SCOOP-3414: Clone Inbound Schedule: Tool-tip related issue for the fields on the page. (Pending Deployment)
+ * SCOOP-3418: SOS: User should be restricted from creating SOS relationship between CRG & Supplier (Pending Deployment)
+ * SCOOP-3505: Manaul Substitution - User is not able to add fractional value for Quantity Multiplier (Merge Pending)
+ * SCOOP-3513: Change Log & Error Log: Headers of \"Order Level Changes\" are left aligned while headers of \"Product Level Changes\" are center aligned (Pending Deployment)
+ * SCOOP-3617: Single Order Creation: User is able to place duplicate order from UI (Pending Deployment)
+1.51
+ * SCOOP-00: ul (ul)
+ * SCOOP-2331: An error is displayed when user login to the OMS application in IE browser after clearing the browsing history and cache from browser  (Blocked)
+ * SCOOP-2835: Performance Optimization (To Do)
+ * SCOOP-3163: UI - Manage orders page Infinite scrolling (Merge Pending)
+ * SCOOP-3368: Create inbound schedule: Validation message displayed for customer field when incorrect supplier given (Merge Pending)
+ * SCOOP-3369: Edit Auto Holding Rules: Edited rules are updated successfully without stating any change reason.  (Merge Pending)
+ * SCOOP-3384: Create inbound schedule: Multiple issues in Cut off time field (Merge Pending)
+ * SCOOP-3387: Search Inbound Schedule: \"All\" order type is missing in Order Type drop down. (Merge Pending)
+ * SCOOP-3427: Clone Inbound Schedule: The title of the page should be Copy Inbound Schedule and page url contains 'copy-inbound-schedule'. (Merge Pending)
+ * SCOOP-3444: Copy Inbound Schedule - Calendar week does not appear if the user creates inbound schedule keeping field 'PR' and 'DL' blank. (Merge Pending)
+ * SCOOP-3840: ul (ul)
+1.50
+ * SCOOP-00: ul (ul)
+ * SCOOP-2344: UI: Create SOS: validation message should be displayed properly (Merge Pending)
+ * SCOOP-3026: Release Schedule Edit: Invalid CRG gets updated when other fields are updated along with it (Pending Deployment)
+ * SCOOP-3161: UI - Customer supplier format changes for all screens (In Progress)
+ * SCOOP-3164: UI - Single order creation async request validation implementation (Merge Pending)
+ * SCOOP-3222: CAMS to SOP Status Update to lock the orders for edit (Pending Deployment)
+ * SCOOP-3224: Inbound Transmission Schedule - Part#1 - Add supp_divison_id to schedule table (Merge Pending)
+ * SCOOP-3381: ABS#187: Requirement change for Auto Hold feature (Pending Deployment)
+ * SCOOP-3398: Search Inbound Schedule - Only Customer's \"Id\" is displayed if searched by \"Supplier ID\", whereas if searched by Customer's Id, Supplier's \"Name\" and \"ID\" are displayed. (Pending Deployment)
+ * SCOOP-3399: Search Inbound Schedule - In \"Start Effective Date\" and \"End Effective Date\" fields, the user is allowed to enter text in-field. (Pending Deployment)
+1.49
+ * SCOOP-3024: Manage Order - Download CSV report for manage order search result (Pending Deployment)
+1.48
+ * SCOOP-00: ul (ul)
+ * SCOOP-2908: Create Release Schedule : Release schedule is being created for CRG belonging to order group  (Pending Deployment)
+ * SCOOP-3006: User can enter special characters in all the fields of ' Create TOG' and 'Create Schedule Id' by copy from any notepad pasting in the field. (Pending Deployment)
+ * SCOOP-3026: Release Schedule Edit: Invalid CRG gets updated when other fields are updated along with it (In Progress)
+ * SCOOP-3066: TOG Association Rule - Delete button is missing on edit mode for deleting the rules on search result screen. (Pending Deployment)
+ * SCOOP-3160: UI - Replace all modal pop ups with Toaster messages (Pending Deployment)
+ * SCOOP-3161: UI - Customer supplier format changes for all screens (To Do)
+ * SCOOP-3185: Add \"About\" option under 3 DOT menu that tells the current version as per the build number (Pending Deployment)
+1.47
+ * SCOOP-00: ul (ul)
+ * SCOOP-2377: Infield description for 'Group Name' field of 'Create Group' page is having spaces in the value (Pending Deployment)
+ * SCOOP-2608: Customer id persists in UI after single order is created through UI for the third time (Pending Deployment)
+ * SCOOP-2923: Create Single Order : Common issues while using Keyboard \"Tab\" in UI (Pending Deployment)
+ * SCOOP-3006: User can enter special characters in all the fields of ' Create TOG' and 'Create Schedule Id' by copy from any notepad pasting in the field. (Pending Deployment)
+ * SCOOP-3026: Release Schedule Edit: Invalid CRG gets updated when other fields are updated along with it (In Progress)
+ * SCOOP-3067: TOG Association Rule - 'Supplier', 'DC', 'Physical warehouse' and 'TOG' fields accept more input than the length define in search and edit screen.  (Pending Deployment)
+ * SCOOP-3151: Validation message fails to display for TOG field when same TOG is entered in Upper and Lower case (for change case). (Pending Deployment)
+ * SCOOP-3168: Group Association: 'S' of the word successfully displays in upper case in success pop-up when the group is created. (Pending Deployment)
+ * SCOOP-3185: Add \"About\" option under 3 DOT menu that tells the current version as per the build number (In Progress)
+ * SCOOP-3234: Single Order Creation : Order is created from UI even when one of the order lines is Duplicate or Product is invalid (Pending Deployment)
+ * SCOOP-551: validation message when search user is performed with invalid inputs (Pending Deployment)
+1.46
+ * SCOOP-1776:  \"Item Number\" field should get re-named to \"Product Number\", but currently it is showing \"Product No.\" on single Order screen (Pending Deployment)
+ * SCOOP-1878: UI Observations for Settings & Source of Supply (Ready for QA)
+ * SCOOP-3223: \"About\" button - On mouse hover Hyper-hand displayed on current version. (Pending Deployment)
+1.45
+ * SCOOP-1951: Create user: Proper validation message should be displayed for blank user id (Pending Deployment)
+ * SCOOP-2348: Common issues related to error log  (Pending Deployment)
+1.44
+ * SCOOP-3185: Add \"About\" option under 3 DOT menu that tells the current version as per the build number (Merge Pending)
+1.43
+ * SCOOP-3185: Add \ (Merge Pending)
+1.42
+ * SCOOP-3185: Add \ (Merge Pending)
+1.41
+ * SCOOP-2737: Extract Orders - Format should be the same for Store and Warehouse (Pending Deployment)
+ * SCOOP-3013: Release Schedule Edit: The value gets changed from 'Y' to 'N' when user uses tab at \ (Pending Deployment)
+1.40
+ * SCOOP-2942: ABS#171 - View Order does not show the updated qty if manual allocation is done for orders which are in status \ (Re-Open)
+1.39
+ * SCOOP-00: null (null)
+ * SCOOP-2416: Special characters is not allowed in Group name while searching (Pending Deployment)
+ * SCOOP-2802: Special characters are allowed in 'Group Description' field on 'Add Group' page. (Merge Pending)
+ * SCOOP-2831: Group Creation:  Rename the scheduling group to Release Group (CRG) (Pending Deployment)
+ * SCOOP-2854: Create inbound schedule - for Friday entered Deilvery day number dosent appear in Search inbound schedule result (Merge Pending)
+ * SCOOP-2870: Create inbound schedule - user should not be able to enter PR day which is earlier than current day for week1 (Merge Pending)
+ * SCOOP-2928: Message displayed on 'Assign Permissions'  page of 'Permissions' tab is not proper when there are no search records for given search criteria  (Pending Deployment)
+ * SCOOP-2930: 'Submit' and 'Cancel' buttons are getting removed when user clicks on 'Reset' button on 'Assign Permissions' page (Merge Pending)
+ * SCOOP-2933:  'Group Name' field on 'Assign Permissions'  page is allowing all special characters (Merge Pending)
+ * SCOOP-2935: Tool tip for  'Group Name'  field on  'Assign Permissions'  page should be displayed (Pending Deployment)
+ * SCOOP-2942: ABS#171 - View Order does not show the updated qty if manual allocation is done for orders which are in status \ (Pending Deployment)
+ * SCOOP-3013: Release Schedule Edit: The value gets changed from 'Y' to 'N' when user uses tab at \ (Pending Deployment)
+ * SCOOP-3024: Manage Order - Download CSV report for manage order search result (In Progress)
+ * SCOOP-3042: Create Inbound Schedule - Customer and Division validation is missing (Pending Deployment)
+ * SCOOP-3065: Order Monitoring Screen: Date and time validation required (Merge Pending)
+ * SCOOP-3067: TOG Association Rule - 'Supplier', 'DC' and 'TOG' fields accept more input than the length define in search and edit screen.  (Pending Deployment)
+ * SCOOP-3076: User should not be able to extract file with more than 20 character name (Merge Pending)
+ * SCOOP-3080: All the mandatory fields should have asterisk sign on Extract Orders page (In Progress)
+ * SCOOP-3086: Class field accept special character in Search TOG and Create TOG screen. (Pending Deployment)
+ * SCOOP-3088: Special characters allowed in 'DC Number' and 'Physical Warehouse' fields in Search TOG Association and Create New TOG Association. (In Progress)
+ * SCOOP-3100: Search & Edit TOG association rules - Validation for TOG1 field is missing on edit mode in the search screen. (Merge Pending)
+ * SCOOP-3114: UI - Bulk Update - Ready to Release status is not updated correctly. See screen shot (Merge Pending)
+ * SCOOP-3123: Clone Inbound Schedule - Placeholders for Mandatory fields like Division and Order type should be displayed with * mark  (Pending Deployment)
+ * SCOOP-3125: UI - Inbound word should be present in Search Scheduling label (Pending Deployment)
+1.38
+ * SCOOP-00: null (null)
+ * SCOOP-1239: Error Log - Order level (Done)
+ * SCOOP-1936: Order Status field is showing asterisk mark on order level even though the field is not mandatory on Edit order screen and change reason at order level should be marked with asterick (Merge Pending)
+ * SCOOP-2348: Common issues related to error log  (Ready for QA)
+ * SCOOP-2834: Bulk Update: Unable to save changes. (Pending Deployment)
+ * SCOOP-3010: TOG Search - Delete button is missing on edit mode for deleting the rules (Pending Deployment)
+ * SCOOP-3015: TOG Creation - Validation message fails to display below the field if the user enters existing TOG id in the next row and the Add button becomes disabled if the same row is deleted. (Pending Deployment)
+ * SCOOP-3041: UI- Deleting values from Day level fields from Create and Search Inbound schedule page is not smooth (In Progress)
+ * SCOOP-3043: Search Inbound Schedule - Placeholders for Mandatory fields like Division and Order type should be displayed with * mark  (Pending Deployment)
+ * SCOOP-3049: TOG association rules creation - Route Code accept only 4 integer value. (To Do)
+ * SCOOP-693: Edit single order: calendar allowing to select process date greater than delivery date (Pending Deployment)
+1.37
+ * SCOOP-00: null (null)
+ * SCOOP-224: Sort by Created Date is not working for first time (Pending Deployment)
+ * SCOOP-2838: Create Schedule ID : Common issues for schedule ID where message is not displayed in UI (Pending Deployment)
+ * SCOOP-2900: Tab focus on delete icon and then quantity field when 'Tab' button is pressed after entering Product no on Single Order creation page. (Ready for QA)
+ * SCOOP-2933:  'Group Name' field on 'Assign Permissions'  page is allowing all special characters (Pending Deployment)
+ * SCOOP-2956: Search Inbound Schedule - 'Invalid Date' message is displayed if user enters invalid Time in Cutt-Off time field (Pending Deployment)
+ * SCOOP-3004:  Search TOG - Class field does not accept numbers in Search TOG field. (Pending Deployment)
+ * SCOOP-3015: TOG Creation - Validation message fails to display below the field if the user enters existing TOG id in the next row and the Add button becomes disabled if the same row is deleted. (In Progress)
+ * SCOOP-3025: UI defect on the Single Order Creation screen (Pending Deployment)
+ * SCOOP-3027: Create Attribute - Not allowing to enter more than two digits for MAX and MIN Product Qty. (Pending Deployment)
+ * SCOOP-3046: UI issues for  Clone Inbound schedule screen (In Progress)
+ * SCOOP-693: Edit single order: calendar allowing to select process date greater than delivery date (In Progress)
+1.36
+ * SCOOP-1274: Search Attribute: Error message shown for invalid data is not removed when user clicks out and clicks inside any disabled field (Pending Deployment)
+ * SCOOP-2059: Value in numeric fields is can be changed by scrolling the mouse or by pressing the Up/Down arrow keys of keyboard,  on many screens  (Pending Deployment)
+ * SCOOP-2115: Manual Allocation: It shows \ (Pending Deployment)
+ * SCOOP-2141: Popup message after creating attribute rule and Customer Order Group successfully is not user friendly (Done)
+ * SCOOP-2436: Order Allocation & Item Cancellation: \ (Pending Deployment)
+ * SCOOP-2862: Create Schedule Id: Effective date field is editable  (Pending Deployment)
+ * SCOOP-2869: Maintain Schedule Id: Common issue for Effective end date is required message (Pending Deployment)
+ * SCOOP-2893: Release Schedule: Application is throwing error message for both fields of 'Release Window' when user removes data from 'from' text field  (Pending Deployment)
+ * SCOOP-2894: Release Schedule: Getting incorrect error message when 'From' or 'To' field is left Blank. (In Progress)
+ * SCOOP-2900: Tab focus on delete icon and then quantity field when 'Tab' button is pressed after entering Product no on Single Order creation page. (Pending Deployment)
+ * SCOOP-3006: User can enter special characters in all the fields of ' Create TOG' and 'Create Schedule Id' by copy from any notepad pasting in the field. (Pending Deployment)
+1.35
+ * SCOOP-2851: Add support to download search result from Manage order screen as CSV (Pending Deployment)
+1.34
+ * SCOOP-1779: Keyboard Enter is not working on COG field search in Attribute Maintenance Page (Pending Deployment)
+ * SCOOP-2024: Test Case Review & Incorporation (Done)
+ * SCOOP-2141: Popup message after creating attribute rule and Customer Order Group successfully is not user friendly (Pending Deployment)
+ * SCOOP-2236: Edit Order: Changes made at order line level if not saved and user clicks on update it shows service error (Pending Deployment)
+ * SCOOP-2319: Item Max/Min limit rule creation - COG Supplier level: If user enters more than 10 digits under COG and Supplier field it shows \ (Pending Deployment)
+ * SCOOP-2416: Special characters is not allowed in Group name while searching (Pending Deployment)
+ * SCOOP-2421: Manual Substitution_Service error is displayed on submitting invalid Quantity Multiplier (In Progress)
+ * SCOOP-2686: Release Schedule: Getting incorrect validation message for invalid Distribution Center Id (Pending Deployment)
+ * SCOOP-2763: Add users: Invitation email is not sent when Send Invitation Email is checked. (Pending Deployment)
+ * SCOOP-2817: User is able to enter values other than 1 to 99  as well under 'Pallet Round Down%', 'Pallet Round Up%', 'Case Round Up%' and 'Case Round Down%' while Creating or Editing Attribute rules (Pending Deployment)
+ * SCOOP-2899: Release Schedule: Getting \ (In Progress)
+ * SCOOP-2943: ABS#169 - Product Master Enrichment > Retail/Internet Description being displayed in UI instead of Product Description (Pending Deployment)
+1.33
+ * SCOOP-00: null (null)
+ * SCOOP-1908: Updated quantity column header should be User Updated quantity on Allocation Review screen (Pending Deployment)
+ * SCOOP-1930: Allocation_Search: Adjusted Qty should allow decimal numbers up-to two digits  (Pending Deployment)
+ * SCOOP-2173: UI_Manual Substitution_Label 'Substituion Description' should be 'Substitute Item Description'  (Pending Deployment)
+ * SCOOP-2331: An error is displayed when user login to the OMS application in IE browser after clearing the browsing history and cache from browser  (In Progress)
+ * SCOOP-2476: Submit button on Cancel Item page remains Enabled when change reason is set as default value  (Pending Deployment)
+ * SCOOP-2485: Product Cancellation > Cancel Item - Tab sequence does not focus on \ (Pending Deployment)
+ * SCOOP-2486: Drop down list for 'Order Status' field on 'Product Cancellation' page is not having 'Hold' option (Pending Deployment)
+ * SCOOP-2597: 'From Date' and 'To Date' should be changed to 'Effective Date' and 'Expiry Date on 'Search Auto Holding' screen. (Pending Deployment)
+ * SCOOP-2811: 'Service error! Please try again.' error message occurs when Group Name is searched be Special character. (In Progress)
+1.32
+ * SCOOP-2802: Special characters are allowed in 'Group Description' field on 'Add Group' page. (Pending Deployment)
+ * SCOOP-2820: single order creation screen - do validation in background (Pending Deployment)
+ * SCOOP-2830: Manual Allocation - Change the default delivery date to next day. (Pending Deployment)
+ * SCOOP-2833: UI sticky header issue on IE (In Progress)
+1.31
+ * SCOOP-00: null (null)
+ * SCOOP-2120: Manual Substitution-does not trigger V44, V36, V14, V18 (Pending Deployment)
+ * SCOOP-2596: Correct search result message should get display after performing search operation with invalid supplierid. (In Progress)
+ * SCOOP-2597: 'From Date' and 'To Date' should be changed to 'Effective Date' and 'Expiry Date on 'Search Auto Holding' screen. (Pending Deployment)
+ * SCOOP-2661: Order Allocation - Service error is displayed if user click on REVIEW button by keeping Adjusted Quantity filed blank (Pending Deployment)
+ * SCOOP-947: Bulk Upload: Comment field accepts special characters other than mentioned in Validation Sheet (In Progress)
+1.30
+ * SCOOP-2803: Error Log - for enrichments instead of product Id 0, '--' should be displayed (Pending Deployment)
+ * SCOOP-2816: ABS_Reported: Issues related to Bulk upload feature (Pending Deployment)
+ * SCOOP-877: Order Monitoring Screen (Missing Schedule) (In QA)
+1.29
+ * SCOOP-2059: Value in numeric fields is can be changed by scrolling the mouse or by pressing the Up/Down arrow keys of keyboard,  on many screens  (In Progress)
+ * SCOOP-2290: System should allow to enter 10 digit value in Min/Max item Quantity field (Pending Deployment)
+ * SCOOP-2571: Error Log-Product level errors are not displayed  (Pending Deployment)
+ * SCOOP-2722: Supplier name is not displayed correctly when name is of more than 25 characters in length (Pending Deployment)
+ * SCOOP-2738: Create schedule logic is preventing to enter PR day as 4 on WEEK-1 line and DL day as 3 or 2 or 1 on WEEK-2 line.  (Pending Deployment)
+ * SCOOP-2740: UI - Calendar is not getting displayed correctly. Its hiding the saturday. screen resolution 1366 X 768 (Pending Deployment)
+ * SCOOP-63: TOG association rules creation (Ready for QA)
+1.28
+ * SCOOP-2712: UI Sticky header on order edit page is completely misaligned and disappear. (Pending Deployment)
+1.27
+ * SCOOP-00: null (null)
+ * SCOOP-1549: Search Release Schedule (To Do)
+ * SCOOP-1550: Release Schedule Edit (In Progress)
+ * SCOOP-1681: Search Validations as per documented (Done)
+ * SCOOP-1787: Enhancement in Grid Component  (Done)
+ * SCOOP-1856: UI Feedback - Rename Item to Product (Pending Deployment)
+ * SCOOP-2160: Sprint-14 Demo feedback changes (In Progress)
+ * SCOOP-2170: Manual Substitution_User should not be able to enter substitute product Id same as Original ordered product Id on substitute Item window (Done)
+ * SCOOP-2198: Bulk Update: Regular orders shown as \ (Done)
+ * SCOOP-2211: UI- Create TOG API Integrations (Done)
+ * SCOOP-2214: UI- API integrations for edit and search and duplicate TOG check (Done)
+ * SCOOP-2216: UI - Actual API integration and Module testing (In Progress)
+ * SCOOP-2223: UI - Actual API intigration & Module Testing (Done)
+ * SCOOP-2290: System should allow to enter 10 digit value in Min/Max item Quantity field (Pending Deployment)
+ * SCOOP-2299: UI - Create Inbound schedule feedback changes. (Done)
+ * SCOOP-2300: UI- Search Inbound schedule changes (Done)
+ * SCOOP-2319: Item Max/Min limit rule creation - COG Supplier level: If user enters more than 10 digits under COG and Supplier field it shows \ (Re-Open)
+ * SCOOP-2331: An error is displayed when user login to the OMS application in IE browser after clearing the browsing history and cache from browser  (In Progress)
+ * SCOOP-2564: User should be able to add past date as 'Process Date' (Pending Deployment)
+ * SCOOP-2612: Schedule Id: Edit is not working on Maintain Schedule id screen (In Progress)
+ * SCOOP-2636: Correct 'Process Date' should get insert in database after creating single order from 'Create Order-->Single Order' menu (Pending Deployment)
+ * SCOOP-2662: Search Schedule ID - An error \ (Pending Deployment)
+ * SCOOP-62: TOG Creation (To Do)
+ * SCOOP-63: TOG association rules creation (To Do)
+ * SCOOP-77: Maintain Schedule Id (In Progress)
+ * SCOOP-877: Order Monitoring Screen (Missing Schedule) (To Do)
+ * SCOOP-878: Search & Edit TOG association rules (To Do)
+ * SCOOP-879: TOG Search and Edit Delete (To Do)
+ * SCOOP-88: Create Release Schedule (To Do)
+ * SCOOP-946: Bulk Upload: Comments field accept more than 60 chars (In Progress)
+1.25
+ * SCOOP-2499: timewheel & exception manager url in env config for ui (Done)
+1.24
+ * SCOOP-2479: Attribute Maintenance: Enable/disable toggle button is showing reverse status in search attribute screen as well as in DB  which was set while create attribute for all combinations (Pending Deployment)
+1.23
+ * SCOOP-1797: When user search a result for order allocation, Item# is displaying instead of \ (Pending Deployment)
+ * SCOOP-1972: User is not able to search bulk upload status using Batch id & User Id as well on Bulk Order Inbox screen (Pending Deployment)
+ * SCOOP-2198: Bulk Update: Regular orders shown as \ (In Progress)
+ * SCOOP-2435: Bulk Upload is not working after reset (Pending Deployment)
+1.22
+ * SCOOP-00: null (null)
+ * SCOOP-1770: Bulk order screen: validation message is displayed for valid file (Pending Deployment)
+ * SCOOP-1856: UI Feedback - Rename Item to Product (Pending Deployment)
+ * SCOOP-1866: Permissions: Permissions page is showing incorrect information for modules whose partial capabilities are assigned to group  (Pending Deployment)
+ * SCOOP-1972: User is not able to search bulk upload status using Batch id & User Id as well on Bulk Order Inbox screen (In Progress)
+ * SCOOP-2187: Route code maximum allowed length  in Single Order UI and order Inbound schema is 2 (In Progress)
+ * SCOOP-2249: Add summary and status of Jira issue in changes.txt (Done)
+ * SCOOP-2253: Bulk Update: Active Order status when changed to \ (Pending Deployment)
+ * SCOOP-2404: UI_Issues related Change Log and Error Log (Pending Deployment)
+ * SCOOP-731: Standing order is getting created with 'New' status (Pending Deployment)
+1.21
+ * SCOOP-00
+ * SCOOP-1127
+ * SCOOP-1140
+ * SCOOP-1201
+ * SCOOP-1549
+ * SCOOP-1550
+ * SCOOP-1567
+ * SCOOP-1627
+ * SCOOP-1690
+ * SCOOP-1876
+ * SCOOP-1928
+ * SCOOP-2040
+ * SCOOP-2115
+ * SCOOP-2129
+ * SCOOP-2141
+ * SCOOP-2163
+ * SCOOP-2169
+ * SCOOP-2171
+ * SCOOP-2176
+ * SCOOP-2177
+ * SCOOP-2188
+ * SCOOP-2196
+ * SCOOP-2219
+ * SCOOP-2245
+ * SCOOP-2246
+ * SCOOP-2274
+ * SCOOP-2319
+ * SCOOP-2339
+ * SCOOP-62
+ * SCOOP-63
+ * SCOOP-75
+ * SCOOP-76
+ * SCOOP-77
+ * SCOOP-78
+ * SCOOP-87
+ * SCOOP-877
+ * SCOOP-878
+ * SCOOP-879
+ * SCOOP-88
+ * SCOOP-89
+1.20
+ * SCOOP-1928
+1.19
+ * SCOOP-2245
+ * SCOOP-2297
+1.18
+ * SCOOP-1239
+ * SCOOP-2220
+ * SCOOP-2245
+ * SCOOP-2274
+ * SCOOP-2297
+1.17
+ * SCOOP-1140
+ * SCOOP-2007
+ * SCOOP-2047
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,4 @@
+<ng-container *ngIf="displayErr">
+  <p class="error">{{displayErrMessage}}</p>
+</ng-container>
+<app-form (fetchForm) = "fetchSearchForm($event)" [formFields]="formFields"></app-form>

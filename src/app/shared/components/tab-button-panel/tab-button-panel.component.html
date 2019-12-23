@@ -1,0 +1,7 @@
+<ul class="nav nav-tabs">
+  <ng-container *ngFor="let btn of buttonItems">
+    <li class="nav-item" *ngIf="isHidden(btn)">
+      <a class="nav-link" [ngClass]="{'active': selectedItem == btn}" (click)="btn.click(btn); listClick($event,btn)">{{btn.text}}</a>
+    </li>
+  </ng-container>
+</ul>

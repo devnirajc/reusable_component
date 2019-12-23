@@ -1,0 +1,5 @@
+<div class="card">
+  <div class="card-header bg-header">{{headerText}}</div>
+  <div class="card-body"><ng-content></ng-content></div> 
+  <ng-container *ngIf="isFooterVisible"><div class="card-footer">{{footerText}}</div></ng-container>
+</div>

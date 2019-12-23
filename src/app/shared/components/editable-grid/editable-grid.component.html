@@ -1,0 +1,84 @@
+<div class="scroll-in-mobile">
+  <table [ngClass]="gridClass()" class="table-grid">
+    <thead>
+      <tr>
+        <ng-container *ngFor="let colDef of editableConfig; let i = index">
+          <th [ngClass]="hasClass(colDef.config)" *ngIf="isSubHeader(colDef.config) == 'N' && renderHeader(colDef.config) == 'Y'"
+            [attr.colspan]="calColSpan(colDef.config)" [attr.rowspan]="calRowSpan(colDef.config)" [width]="colDef.config && colDef.config.width ? colDef.config.width : ''">
+            {{colDef.config.title}}
+          </th>
+        </ng-container>
+      </tr>
+
+      <tr>
+        <ng-container *ngFor="let colDef of editableConfig; let i = index">
+          <th *ngIf="isSubHeader(colDef.config) == 'Y' && renderHeader(colDef.config) == 'Y'" [width]="colDef.config && colDef.config.width ? colDef.config.width : ''"
+            [ngClass]="colDef.config.name">
+            <span> {{colDef.config.title}}</span>
+          </th>
+        </ng-container>
+      </tr>
+    </thead>
+
+    <tbody>
+      <ng-container *ngFor="let data of gridData; let index=index;">
+        <tr>
+          <ng-container *ngFor="let colDef of editableConfig;let i=index;">
+            <ng-container *ngIf="colDef.config.name === 'actions' && renderColumn(colDef.config, data, index) == 'Y'">
+              <td [width]="colDef.config && colDef.config.width ? colDef.config.width : ''" [ngClass]="{'align-middle' : getRowSpan(colDef.config,data,index) > 0 }"
+                [attr.rowspan]="getRowSpan(colDef.config, data, index)">
+                <ng-container *ngFor="let action of colDef.config.actionItems">
+                  <app-button [disabled]="disabledButton(action,data,index)" (onButtonClick)="action.config.click(data,action,index)"
+                    [cls]="action.config.btnCls" [text]="" [iconClass]="action.config.iconClassMethod ? action.config.iconClassMethod(action,index) : action.config.iconClass"
+                    [iconTooltip]="action.config.iconTooltip" [hidden]="hideButton(action,index)"></app-button>
+                </ng-container>
+              </td>
+            </ng-container>
+
+            <ng-container *ngIf="renderColumn(colDef.config, data, index) == 'Y' && colDef.config.name !== 'actions' && (data.hasOwnProperty(colDef.config.name) || getRowSpan(colDef.config,data,index) == '');">
+              <td id="{{colDef.config.name}}-{{index}}" dirty="false" [width]="colDef.config && colDef.config.width ? colDef.config.width : ''"
+                [ngClass]="{'align-middle text-center' : getRowSpan(colDef.config,data,index) > 0, 'error' : isEditable(data,colDef.config,index) && toDisplayError(colDef.config,index) }"
+                [attr.rowspan]="getRowSpan(colDef.config,data,index)" [ngStyle]="{'background-color': getBackgroundColor(data,colDef.config,index) }"
+                (focus)="editCellClick($event,data,colDef.config,index,i + 1,index + 1)" [attr.tabindex]="isEditable(data,colDef.config,index) ? 0 : -1">
+                <ng-container *ngTemplateOutlet="isEditable(data,colDef.config,index) ? editGridInputHtml : nonEditGridInputHtml"></ng-container>
+              </td>
+            </ng-container>
+
+            <ng-template #nonEditGridInputHtml>
+              <div [innerHtml]="customTemplate(data,colDef.config,index)"></div>
+            </ng-template>
+
+            <ng-template #editGridInputHtml>
+              <div [tooltip]="toDisplayErrorMessage(colDef.config,index)">
+                <span *ngIf="!(colum==i + 1 && row==index + 1) && colDef.config.name != 'actions'" [innerHtml]="customTemplate(data,colDef.config,index)"></span>
+                <ng-container *ngIf="checkTypeofEditableField('input',colDef.config,index)">
+                  <input *ngIf="colum==i + 1 && row==index + 1 && colDef.config.name != 'actions'" id="{{colDef.config.name}}_{{index}}"
+                    (focus)="onInputFocus(colDef.config,index)" [type]="getInputSubType(colDef.config,index)" [checked]="isChecked(data,colDef.config,index)"
+                    [value]="printValue(data,colDef.config,index)" (blur)="onBlur($event,data,colDef.config,index)"
+                    [min]="setMinimum(colDef.config,index)" [max]="setMaximum(colDef.config,index)" [attr.maxlength]="setMaxLength(colDef.config,index)"
+                    (keyup)="onKeyUp($event,colDef.config,index)" (keypress)="onKeyPress($event,colDef.config,index)"
+                    [name]="inputIdentifier(colDef.config,index)" (click)="inputClick($event,data,colDef.config,index)"
+                    [disabled]="disableField(data,colDef.config,index)" (keydown)="onKeydown($event,colDef.config,index)"
+                    [ngClass]="getInputClass(colDef.config,index)" />
+                </ng-container>
+                <ng-container *ngIf="checkTypeofEditableField('dropdown',colDef.config,index)">
+                  <app-drop-down *ngIf="colum==i + 1 && row==index + 1 && colDef.config.name != 'actions'" id="{{colDef.config.name}}_{{index}}" [name]="inputIdentifier(colDef.config,index)" [defaultOptionsValue]="colDef.config.editCell.config.defaultOptionsValue"
+                    [defaultDisplayLabel]="colDef.config.editCell.config.defaultDisplayLabel" [inputClass]="getInputClass(colDef.config,index)"
+                    [value]="printValue(data,colDef.config,index)" 
+                    [disabled]="isDisabled(colDef.config)" [receivedInputData]="printOptonsValue(colDef.config,index)"
+                    (selectedInputData)="onChange($event,colDef.config,index)"></app-drop-down>
+                </ng-container>
+              </div>
+            </ng-template>
+
+          </ng-container>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="gridData.length==0 ">
+        <td id="addColspan">
+          <p>{{noRecord()}}</p>
+        </td>
+      </ng-container>
+    </tbody>
+  </table>
+</div>

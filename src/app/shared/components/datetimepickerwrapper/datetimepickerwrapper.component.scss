@@ -1,0 +1,34 @@
+.date-time-picker{
+    position: relative;
+    .showDiv{
+        display: block;
+    }
+    .time-picker{
+        padding: 0 1rem;
+        border-bottom: 1px solid #ccc;
+    }
+    .form-control[readonly]{
+        background-color: transparent;
+        pointer-events: all !important;
+        cursor: pointer;
+    }
+    .hideDiv{
+        display: none;
+    }
+    .dropdown-menu.show{
+        margin : 0;
+        padding:0; 
+    }
+    .footer{
+        text-align: center;
+        button{
+            border: none;
+            &:hover{
+                cursor: pointer;
+            }
+            i{
+                color : #fff;
+            }
+        }
+    }
+}

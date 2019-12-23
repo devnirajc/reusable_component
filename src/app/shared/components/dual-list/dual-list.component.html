@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row">
+    <div class="dual-list list-left col-md-5">
+      <div class="well text-right">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="col-md-12 text-left p-0 mb-2"><strong>{{allDataHeading}}</strong></div>
+            <div class="input-group">
+              <span class="input-group-addon glyphicon glyphicon-search"></span>
+              <input type="text" class="form-control" [placeholder]="sourcePlaceHolder" (keyup)="onKeyUp($event,'source',displaySourceLabel,'sourceData','sourceSearchText','sourceLabel')"
+              />
+            </div>
+          </div>
+        </div>
+        <ul class="list-group">
+          <ng-container *ngFor="let item of sourceData">
+            <ng-container *ngIf="!checkItemExistInDestination(destination,item)">
+              <li class="list-group-item user-list" [ngClass]="isItemSelected(item)" (click)="onItemClick(item,'selectedSource')">{{displayListLabel(item,displaySourceLabel,'sourceLabel')}}</li>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="checkActiveCustomers()">
+            <li class="list-group-item user-list">{{noSourceData}}</li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+
+    <div class="btn-group-vertical col-md-2 text-center center-div">
+      <ng-container *ngFor="let btn of buttons">
+        <app-button [iconClass]="getBtnIconCls(btn.config)" [text]="getBtnText(btn.config)" [cls]="btn.config && btn.config.btnCls ? btn.config.btnCls : defaultButtonClass"
+          (onButtonClick)="getBtnClick($event, btn.config)" [disabled]="isDisabled(btn.config)" [hidden]="hideButton(btn.config)"></app-button>
+      </ng-container>
+    </div>
+
+    <div class="dual-list list-right col-md-5">
+      <div class="well">
+        <div class="row">
+          <div class="col-md-12 text-left mb-2"><strong>{{selectedDataHeading}}</strong></div>
+          <div class="col-md-12">            
+            <div class="input-group">
+              <input type="text" class="form-control" [placeholder]="destinationPlaceHolder" (keyup)="onKeyUp($event,'destination',displayDesitnationLabel,'destinationData','destSearchText', 'destinationLabel')"
+              />
+              <span class="input-group-addon glyphicon glyphicon-search"></span>
+            </div>
+          </div>
+        </div>
+        <ul class="list-group">
+          <ng-container *ngFor="let item of destinationData">
+            <li class="list-group-item user-list" [ngClass]="isItemSelected(item)" (click)="onItemClick(item,'selectedDestination')">{{displayListLabel(item,displayDesitnationLabel,'destinationLabel')}}</li>
+          </ng-container>
+          <ng-container *ngIf="destinationData.length === 0">
+            <li class="list-group-item user-list">{{noDestData}}</li>
+          </ng-container>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
